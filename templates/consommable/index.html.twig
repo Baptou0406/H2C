@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consommable index{% endblock %}
+
+{% block body %}
+    <h1>Consommable index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_magasin</th>
+                <th>Prix</th>
+                <th>logement_id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for consommable in consommables %}
+            <tr>
+                <td>{{ consommable.id }}</td>
+                <td>{{ consommable.nomMagasin }}</td>
+                <td>{{ consommable.prix }}</td>
+                <td>{{ consommable.logement.nom}}</td>
+
+                <td>
+                    <a href="{{ path('app_consommable_show', {'id': consommable.id}) }}">show</a>
+                    <a href="{{ path('app_consommable_edit', {'id': consommable.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_consommable_new') }}">Create new</a>
+{% endblock %}
